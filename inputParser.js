@@ -1,4 +1,4 @@
-class InputParser {
+export class InputParser {
   /**
    * @constructor
    * init web speech object
@@ -33,11 +33,11 @@ class InputParser {
         .join('');
       transcript += result; // append result to transcript
       console.log(transcript);
-
       if (results.isFinal) {
         // if the current response obj is marked final
         speechArr.push(transcript); // push existing transcript
         transcript = ''; // clear transcript
+        console.log(speechArr); // log speechArr
       }
     }); 
 
@@ -54,3 +54,4 @@ class InputParser {
     this.recognition.stop();
   }
 }
+
