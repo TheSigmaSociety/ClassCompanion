@@ -1,4 +1,4 @@
-export class InputParser {
+export default class InputParser {
   /**
    * @constructor
    * init web speech object

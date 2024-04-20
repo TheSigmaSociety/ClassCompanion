@@ -1,4 +1,4 @@
-const InputParser = require('./inputParser');
+import InputParser from './inputParser.js';
 const inputParser = new InputParser();
 
 inputParser.listen();
