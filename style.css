@@ -101,6 +101,29 @@ body {
     display: flex;
 }
 
+.voiceButton {
+    border: 5px solid #FBF4DD;
+    border-radius: 10px;
+    background-color: #072345;
+    opacity: 80%;
+    transition: 0.3s;
+    position: relative;
+    bottom: 3%;
+    transition: 0.3s;
+    width: fit-content;
+    display: flex;
+    align-items: center;
+    color: green;
+    padding: 5px 15px 5px 15px;
+    font-size: 30px;
+    font-family: 'Nunito', sans-serif;
+}
+
+.voiceButton:hover {
+    background-color: red;
+    color: #072345;
+}
+
 .rawContainer,
 .notesContainer {
     background-color: #3566a193;

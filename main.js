@@ -88,7 +88,7 @@ function start() {
   start1 = !start1;
 }
 
-document.getElementById('myButton').addEventListener('click', start);
+document.getElementById('voiceButton').addEventListener('click', start);
 
 function clearBox(boxtype) {
   if (boxtype === "rawText") {
