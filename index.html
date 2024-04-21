@@ -17,40 +17,34 @@
             <p class = "title">Class Companion</p>
             <h3 class = "bodyText">Convert your lectures into notes using real-time speech-to-text technology</h3>
         </div>
+        <div class = "scrollDiv">
+            <h3 class = "scrollText">Scroll Down!</h3>
+        </div>
     </section>
     <section>
         <div class = "listenerDiv">
-            <button href = "none" id = "voiceButton" class = "voiceButton">Start Listening!</button>
-            <!-- <div class = "buttonContainer" onclick = 'start()'> 
-                <p class = "listenButton">Start Listening!</p>
-                <span class = "material-symbols-outlined listenIcon">mic</span>
-                <style>
-                    .material-symbols-outlined {
-                        font-variation-settings:
-                        'FILL' 1,
-                        'wght' 700,
-                        'GRAD' 200,
-                        'opsz' 24
-                    }
-                </style>
-            </div> -->
+            <div class = "buttonDiv">
+                <button href="none" id="voiceButton" class="voiceButton">Start Listening!</button>
+                <button href="none" id="printButton">Download PDF</button>
+            </div>
             <div class = "textBoxContainer">
                 <div class = "rawContainer">
                     <div class = "headingBar">
                         <h5 class = "rawLabel">Raw Speech:</h5>
-                        <span class = "material-symbols-outlined delete" onclick = 'clearBox("rawText")'>delete</span>
+                        <button id="deleteButtonRaw"><span class="material-symbols-outlined delete">delete</span></button> 
                     </div>
-                    <div class="rawTextDiv">
-                        <p id = "rawText" onclick = 'clearBox("rawText")'></p>
+                    <div id = "rawTextDiv" class="rawTextDiv">
+                        <p id = "rawText"></p>
                     </div>
                 </div>
                 <div class = "notesContainer">
                     <div class = "headingBar">
                         <h5 class = "notesLabel">Your Notes:</h5>
-                        <span class = "material-symbols-outlined delete">delete</span>
+                        <button id="deleteButtonNotes"><span class="material-symbols-outlined delete">delete</span></button>
+
                     </div>
-                    <div class="notesTextDiv">
-                        <p id = "notesText" onclick = 'clearBox("notesText")'></p> <!-- After ChatGPT makes the notes, add the notes here -->
+                    <div id = "notesTextDiv" class="notesTextDiv">
+                        <p id = "notesText"></p> <!-- After ChatGPT makes the notes, add the notes here -->
                     </div>
                 </div>
             </div>
