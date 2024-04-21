@@ -5,53 +5,56 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@800&f[]=gambarino@400&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap" rel="stylesheet">
-    <link rel = "stylesheet"> 
+    <link href="https://api.fontshare.com/v2/css?f[]=nunito@400&f[]=melodrama@500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <script src = 'main.js'></script>
 </head>
 <body>
-    <div class="container">
-        <section>
-            <div class = "topText">
-                <p class = "title">Class Companion</p>
-                <h3 class = "bodyText">Convert your lectures into notes using real-time speech-to-text technology</h3>
+    <div class = "topLeft bubble"></div>
+    <div class = "bottomRight bubble"></div>
+    <section>
+        <div class = "topText">
+            <p class = "title">Class Companion</p>
+            <h3 class = "bodyText">Convert your lectures into notes using real-time speech-to-text technology</h3>
+        </div>
+    </section>
+    <section>
+        <div class = "listenerDiv">
+            <div class = "buttonContainer" onclick = 'start()'>  <!-- Add an OnClick event here that starts the recording function -->
+                <p class = "listenButton">Start Listening!</p>
+                <span class = "material-symbols-outlined listenIcon">mic</span>
+                <style>
+                    .material-symbols-outlined {
+                        font-variation-settings:
+                        'FILL' 1,
+                        'wght' 700,
+                        'GRAD' 200,
+                        'opsz' 24
+                    }
+                </style>
             </div>
-        </section>
-        <section>
-            <div class = "listenerDiv">
-                <div class = "buttonContainer" OnClick = 'start()'>  <!-- Add an OnClick event here that starts the recording function -->
-                    <p class = "listenButton">Start Listening!</p>
-                    <span class = "material-symbols-outlined listenIcon">mic</span>
-                    <style>
-                        .material-symbols-outlined {
-                          font-variation-settings:
-                          'FILL' 1,
-                          'wght' 700,
-                          'GRAD' 200,
-                          'opsz' 24
-                        }
-                    </style>
-                </div>
-                <div class = "textBoxContainer">
-                    <div class = "rawContainer">
-                        <div class = "headingBar">
-                            <h5 class = "rawLabel">Raw Speech:</h5>
-                            <span class = "material-symbols-outlined delete" OnClick = 'clearBox("rawText")'>delete</span>
-                        </div>
+            <div class = "textBoxContainer">
+                <div class = "rawContainer">
+                    <div class = "headingBar">
+                        <h5 class = "rawLabel">Raw Speech:</h5>
+                        <span class = "material-symbols-outlined delete" onclick = 'clearBox("rawText")'>delete</span>
+                    </div>
+                    <div class="rawTextDiv">
                         <p id = "rawText"></p> <!-- When we are recieving the raw speech, concatinate the words here, one at a time -->
                     </div>
-                    <div class = "notesContainer">
-                        <div class = "headingBar">
-                            <h5 class = "notesLabel">Your Notes:</h5>
-                            <span class = "material-symbols-outlined delete">delete</span>
-                        </div>
-                        <p id = "notesText" OnClick = 'clearBox("notesText")'></p> <!-- After ChatGPT makes the notes, add the notes here -->
+                </div>
+                <div class = "notesContainer">
+                    <div class = "headingBar">
+                        <h5 class = "notesLabel">Your Notes:</h5>
+                        <span class = "material-symbols-outlined delete">delete</span>
+                    </div>
+                    <div class="notesTextDiv">
+                        <p id = "notesText" onclick = 'clearBox("notesText")'></p> <!-- After ChatGPT makes the notes, add the notes here -->
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
     </div>
     <script src="dist/app.js"></script>
 </body>

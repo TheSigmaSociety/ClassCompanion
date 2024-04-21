@@ -1,21 +1,33 @@
-@import url(https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@800&f[]=gambarino@400&display=swap);
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap');
+@import url(https://api.fontshare.com/v2/css?f[]=nunito@400&f[]=melodrama@500&display=swap);
+
+::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #334964;
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #2c60a0;
+    transition: 0.3s;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #214776;
+  }
+
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
-}
-
-.container {
-    scroll-snap-type: y mandatory;
-    overflow-y: scroll;
-    height: 100vh;
 }
 
 section {
     height: 100vh;
     display: flex;
-    scroll-snap-align: start;
 }
 
 body {
@@ -24,26 +36,28 @@ body {
     overflow-x: hidden;
 }
 
+.topText {
+    margin: auto;
+    text-align: center;
+}
+
 .title {
-    font-family: 'Cabinet Grotesk', sans-serif;
+    font-family: 'Melodrama', serif;
     color: #FBF4DD;
-    font-size: 8rem;
+    font-size: 10vw;
     padding-bottom: 0px;
-    width: 10vw;
-    text-shadow: 5px 5px #85C7F2;
-    margin-left: 2vw;
+    text-shadow: 3px 3px #85C7F2;
 }
 
 .bodyText {
-    font-family: "Roboto Slab", serif;
+    font-family: 'Nunito', sans-serif;
     color: #FBF4DD;
     font-size: 2rem;
-    padding: 10px;
-    margin-left: 5vw;
+    text-shadow: 2px 2px #85C7F2;
 }
 
 .scrollText {
-    font-family: 'Cabinet Grotesk', sans-serif;
+    font-family: 'Melodrama', serif;
     color: #FBF4DD;
 }
 
@@ -51,6 +65,7 @@ body {
     border: 5px solid #FBF4DD;
     border-radius: 10px;
     background-color: #072345;
+    opacity: 80%;
     transition: 0.3s;
     position: relative;
     bottom: 3%;
@@ -62,7 +77,7 @@ body {
 
 .listenButton,
 .listenIcon {
-    font-family: "Roboto Slab", serif;
+    font-family: 'Nunito', sans-serif;
     font-size: 30px;
     text-decoration: none;
     padding: 5px;
@@ -79,24 +94,23 @@ body {
 }
 
 .textBoxContainer {
-    background: #10100E;
     border: 5px solid#FBF4DD;
     height: 80vh;
     width: 95vw;
     border-radius: 10px;
     display: flex;
-    overflow: hidden;
 }
 
 .rawContainer,
 .notesContainer {
     background-color: #3566a193;
-    height: 100%;
+    height: 96.6%;
     width: 50%;
     color: #FBF4DD  ;
-    font-family: "Roboto Slab", serif;
+    font-family: 'Nunito', sans-serif;
     padding: 10px;
     border-radius: 0%;
+    opacity: 80%;
 }
 
 .rawLabel,
@@ -129,3 +143,57 @@ body {
     color: red;
     cursor: pointer;
 }
+
+.rawTextDiv,
+.notesTextDiv {
+    margin-top: 1vh;
+    overflow-y: auto;
+    height: 70vh;
+}
+
+.bubble {
+    width: 500px;
+    height: 500px;
+    background: linear-gradient(0, blue, red);
+    border-radius: 300px;
+    position: fixed;
+    z-index: -1;
+    filter: blur(10px);
+
+}
+
+.topLeft {
+    translate: -50% -50%;
+    animation: morph1 20s infinite;
+}
+
+.bottomRight {
+    translate: 230% 100%;
+    animation: morph2 20s infinite;
+}
+
+@keyframes morph1 {
+    from {
+        rotate: 0deg;
+    }
+    50% {
+        height: 110%;
+    }
+    to {
+        rotate: 360deg; 
+    }
+}
+
+@keyframes morph2 {
+    from {
+        rotate: 0deg;
+    }
+    75% {
+        height: 110%;
+        translate: 230% 50%
+    }
+    to {
+        rotate: 360deg; 
+    }
+}
+
