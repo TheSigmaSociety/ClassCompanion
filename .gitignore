@@ -3,3 +3,4 @@ node_modules
 .prettierrc
 key.js
 dist
+dist/app.js

@@ -1,5 +1,6 @@
-import openai, { OpenAI } from 'openai';
+import OpenAI from 'openai';
 import { OPENAI_API_KEY } from './key';
+
 export default class Queue {
 
   /** The constructor for the queue
@@ -61,19 +62,21 @@ export default class Queue {
     }
     return false;
   }
-
+  
+  async response() {
+    const completion = await openai.chat.completions.create({
+      messages: [{ role: "system", content: "You are a helpful assistant." }],
+      model: "gpt-3.5-turbo-0125",
+    });
+    console.log(completion.choices[0].message.content);
+  }
 }
 
-async function main() {
-  const completion = await openai.chat.completions.create({
-    messages: [{ role: "system", content: "You are a helpful assistant." }],
-    model: "gpt-3.5-turbo-0125",
-  });
 
-  console.log(completion.choices[0].message.content);
-}
 
-main();
 
-const q = new Queue();
-console.log(q.getQueue());
+
+
+
+// const q = new Queue();
+// console.log(q.getQueue());
