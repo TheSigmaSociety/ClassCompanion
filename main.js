@@ -1,3 +1,6 @@
+import inputParser from './inputParser.js';
+import Queue from './aiResponse.js';
+const queue = new Queue();
 const recognition = new webkitSpeechRecognition() || new SpeechRecognition();
 recognition.interimResults = true;
 recognition.continuous = true;
@@ -8,6 +11,7 @@ let index = 0;
 
 let start1 = true;
 g = [];
+
 function start() {
   if(start1) { 
     recognition.start();
