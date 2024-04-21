@@ -6,6 +6,7 @@ let start1 = true;
 let g = [];
 
 function start() {
+  document.getElementById("rawText").innerText += '---------- Recording Started. ----------'
   if(start1) { 
     recognition.start();
   }
@@ -32,7 +33,7 @@ recognition.onresult = event => {
     if(result.isFinal) {
       g.push(result[0].transcript);
       console.log(g);
-      document.getElementById("rawText").textContent += "\n" + g[index].toString();
+      document.getElementById("rawText").innerText += "\n\n" + g[index].toString();
       index += 1;
     }
 };
@@ -40,7 +41,7 @@ recognition.onresult = event => {
 recognition.onend = () => {
   g = [];
   index = 0;
-  document.getElementById("rawText").textContent += "\n" + 'Recording Stopped.';
+  document.getElementById("rawText").innerText += "\n\n" + '---------- Recording Stopped. ----------';
   console.log('finished')
 };
 
