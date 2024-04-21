@@ -14,9 +14,7 @@ class Queue {
    * backIndex: the backmost index inside the queue
    */
   constructor() {
-    this.elements = {};
-    this.frontIndex = 0;
-    this.backIndex = 0;
+    this.elements = [];
     this.openai = new OpenAI({ apiKey: OPENAI_API_KEY, dangerouslyAllowBrowser: true});
   }
 
@@ -25,9 +23,7 @@ class Queue {
    * Return: nothing
    */
   enqueue(x) {
-    this.elements[this.backIndex] = x;
-    this.backIndex++;
-    return 'Inserted ' + x + ' into the queue';
+    this.elements.push(x);
   }
 
   /** Removes the first element of the queue
@@ -35,9 +31,8 @@ class Queue {
    * Return: the removed element
    */
   dequeue() {
-    const element = this.element[this.frontIndex];
+    const element = this.elements[0];
     delete this.elements[this.frontIndex];
-    this.frontIndex++;
     return element;
   }
   
@@ -46,7 +41,7 @@ class Queue {
    * Return: the first element inside the queue
    */
   getFrontElement() {
-    return this.elements[this.frontIndex];
+    return this.elements[0];
   }
 
   /** Gets the list of items in the queue
@@ -62,7 +57,7 @@ class Queue {
    * Return: True if queue has 5 elements
    */
   checkFull(){
-    if (this.elements.lenght >= 5){
+    if (this.elements.length >= 10){
       return true;
     }
     return false;
@@ -70,15 +65,17 @@ class Queue {
   
   async response() {
     const completion = await this.openai.chat.completions.create({
-      messages: [{ role: "system", content: "You are a helpful assistant." }],
+      messages: [
+        { role: "system", content: "summarize and provide detailed notes from the following sentences from a live speech transcript. correct for any unintended mistakes. each input from the transcript is around 10 sentences long, separated by /" },
+        { role: "user", content:  this.elements.join("/")}],
       model: "gpt-3.5-turbo-0125",
     });
     console.log(completion.choices[0].message.content);
+    this.elements = [];
   }
 }
 
 const queue = new Queue();
-queue.response();
 
 function start() {
   if(start1) { 
@@ -90,6 +87,8 @@ function start() {
   }
   start1 = !start1;
 }
+
+document.getElementById('myButton').addEventListener('click', start);
 
 function clearBox(boxtype) {
   if (boxtype === "rawText") {
@@ -110,6 +109,11 @@ recognition.onresult = event => {
       console.log(g);
       document.getElementById("rawText").innerText += "\n\n" + g[index].toString();
       index += 1;
+      if (queue.checkFull()) {
+        console.log("full");
+        queue.response();
+      }
+      queue.enqueue(result[0].transcript);
     }
 };
 
