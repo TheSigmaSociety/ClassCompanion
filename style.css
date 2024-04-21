@@ -125,7 +125,7 @@ body {
 }
 
 .delete {
-    margin-left: 85%;
+    margin-left: 35vw;
     color: red;
     cursor: pointer;
 }
