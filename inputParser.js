@@ -24,24 +24,20 @@ export default class InputParser {
   listen() {
     let transcript = '';
     let speechArr = [];
-
-    this.recognition.start(); // start speech recognition module
-    this.recognition.addEventListener('result', event => { // callback
-      const transcript = Array.from(event.results)
-        .map(result => result[0])
-        .map(result => result.transcript)
-        .join('');
-      transcript += result; // append result to transcript
-      console.log(transcript);
-      if (results.isFinal) {
-        // if the current response obj is marked final
-        speechArr.push(transcript); // push existing transcript
-        transcript = ''; // clear transcript
-        console.log(speechArr); // log speechArr
-      }
-    }); 
+    this.recognition.start(); // start listening
+    this.recognition.addEventListener('result', event => {
+    const result = event.results[event.results.length - 1][0].transcript;
+    transcript = result; // set transcript to result
+    console.log(transcript);
+    if (event.results[event.results.length - 1].isFinal) {
+      speechArr.push(transcript);
+      console.log(speechArr);
+      transcript = '';
+    }
+  });
 
     this.recognition.addEventListener('end', () => {
+      console.log('end');
       if (transcript != '') {
         speechArr.push(transcript);
       }
