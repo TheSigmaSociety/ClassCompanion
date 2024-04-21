@@ -100,9 +100,8 @@ body {
 
 .rawLabel,
 .notesLabel {
-    border-bottom: 5px dashed #6495d293;
     font-size: 20px;
-    padding: 5px
+    padding: 5px;
 }
 
 .rawContainer {
@@ -112,4 +111,20 @@ body {
 
 .listenerDiv {
     margin: 7vh auto;
+}
+
+.rawDiv {
+    color: #FBF4DD
+}
+
+.headingBar {
+    display: flex;
+    align-items: center;
+    border-bottom: 5px dashed #6495d293;
+}
+
+.delete {
+    margin-left: 85%;
+    color: red;
+    cursor: pointer;
 }
