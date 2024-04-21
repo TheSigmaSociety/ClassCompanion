@@ -33,7 +33,7 @@ class Queue {
     this.frontIndex++;
     return element;
   }
-
+  
   /** Gets the first element inside the queue
    * Parameters: none
    * Return: the first element inside the queue
