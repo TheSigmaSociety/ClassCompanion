@@ -1,14 +1,7 @@
-import inputParser from './inputParser.js';
-import Queue from './aiResponse.js';
-const queue = new Queue();
 const recognition = new webkitSpeechRecognition() || new SpeechRecognition();
 recognition.interimResults = true;
 recognition.continuous = true;
-const rawText = document.getElementById("rawText");
-const notesText = document.getElementById("notesText");
 let index = 0;
-
-
 let start1 = true;
 g = [];
 
@@ -25,11 +18,11 @@ function start() {
 function clearBox(boxtype) {
   if (boxtype === "rawText") {
     console.log("raw");
-    rawText.innerHTML = '';
+    document.getElementById("rawText").textContent = '';
   }
   if (boxtype === "notesText") {
     console.log("notes");
-    notesText.innerHTML = '';
+    document.getElementById("notesText").textContent = '';
   }
 }
 
@@ -38,7 +31,7 @@ recognition.onresult = event => {
     if(result.isFinal) {
       g.push(result[0].transcript);
       console.log(g);
-      rawText.innerHTML += `<br>` + g[index].toString();
+      document.getElementById("rawText").textContent += "\n" + g[index].toString();
       index += 1;
     }
 };
@@ -46,7 +39,7 @@ recognition.onresult = event => {
 recognition.onend = () => {
   g = [];
   index = 0;
-  rawText.innerHTML += `<br>` + 'Recording Stopped.';
+  document.getElementById("rawText").textContent += "\n" + 'Recording Stopped.';
   console.log('finished')
 };
 
