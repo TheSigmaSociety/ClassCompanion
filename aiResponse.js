@@ -1,6 +1,6 @@
-const openai = new openai({ apiKey: process.env.OPENAI_API_KEY });
-
-class Queue {
+import openai, { OpenAI } from 'openai';
+import { OPENAI_API_KEY } from './key';
+export default class Queue {
 
   /** The constructor for the queue
    * elements: list of the elements inside the queue
@@ -11,6 +11,7 @@ class Queue {
     this.elements = {};
     this.frontIndex = 0;
     this.backIndex = 0;
+    const openai = new OpenAI({ apiKey: OPENAI_API_KEY, dangerouslyAllowBrowser: true});
   }
 
   /** Inserts a new element to the back of the queue
