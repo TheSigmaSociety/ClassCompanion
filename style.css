@@ -1,3 +1,115 @@
+@import url(https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@800&f[]=gambarino@400&display=swap);
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    scroll-snap-type: y mandatory;
+    overflow-y: scroll;
+    height: 100vh;
+}
+
+section {
+    height: 100vh;
+    display: flex;
+    scroll-snap-align: start;
+}
+
 body {
-    background-color: #091A3C;
+    background: #072345;
+    width: 100%;
+    overflow-x: hidden;
+}
+
+.title {
+    font-family: 'Cabinet Grotesk', sans-serif;
+    color: #FBF4DD;
+    font-size: 8rem;
+    padding-bottom: 0px;
+    width: 10vw;
+    text-shadow: 5px 5px #85C7F2;
+    margin-left: 2vw;
+}
+
+.bodyText {
+    font-family: "Roboto Slab", serif;
+    color: #FBF4DD;
+    font-size: 2rem;
+    padding: 10px;
+    margin-left: 5vw;
+}
+
+.scrollText {
+    font-family: 'Cabinet Grotesk', sans-serif;
+    color: #FBF4DD;
+}
+
+.buttonContainer {
+    border: 5px solid #FBF4DD;
+    border-radius: 10px;
+    background-color: #072345;
+    transition: 0.3s;
+    position: relative;
+    bottom: 3%;
+    transition: 0.3s;
+    width: fit-content;
+    display: flex;
+    align-items: center;
+}
+
+.listenButton,
+.listenIcon {
+    font-family: "Roboto Slab", serif;
+    font-size: 30px;
+    text-decoration: none;
+    padding: 5px;
+    transition: 0.3s;
+    color: green;
+}
+
+.buttonContainer:hover {
+    background-color: red;
+    .listenButton,
+    .listenIcon {
+        color: #072345;
+    }
+}
+
+.textBoxContainer {
+    background: #10100E;
+    border: 5px solid#FBF4DD;
+    height: 80vh;
+    width: 95vw;
+    border-radius: 10px;
+    display: flex;
+}
+
+.rawContainer,
+.notesContainer {
+    background-color: #3566a193;
+    height: 100%;
+    width: 50%;
+    color: #FBF4DD  ;
+    font-family: "Roboto Slab", serif;
+    padding: 10px;
+    border-radius: 0%;
+}
+
+.rawLabel,
+.notesLabel {
+    border-bottom: 5px dashed #6495d293;
+    font-size: 20px;
+    padding: 5px
+}
+
+.rawContainer {
+    border-right: 5px solid #6495d293;
+}
+
+
+.listenerDiv {
+    margin: 7vh auto;
 }
