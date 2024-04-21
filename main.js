@@ -3,7 +3,7 @@ recognition.interimResults = true;
 recognition.continuous = true;
 let index = 0;
 let start1 = true;
-g = [];
+let g = [];
 
 function start() {
   document.getElementById("rawText").innerText += '---------- Recording Started. ----------'
@@ -20,6 +20,7 @@ function clearBox(boxtype) {
   if (boxtype === "rawText") {
     console.log("raw");
     document.getElementById("rawText").textContent = '';
+
   }
   if (boxtype === "notesText") {
     console.log("notes");
