@@ -2,4 +2,3 @@
 node_modules
 .prettierrc
 key.js
-dist
