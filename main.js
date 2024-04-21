@@ -6,8 +6,8 @@ let start1 = true;
 let g = [];
 
 function start() {
-  document.getElementById("rawText").innerText += '\n---------- Recording Started. ----------'
   if(start1) { 
+    document.getElementById("rawText").innerText += '\n---------- Recording Started. ----------'
     recognition.start();
   }
   else {
