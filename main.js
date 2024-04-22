@@ -1,61 +1,38 @@
 import OpenAI from 'openai';
 import { OPENAI_API_KEY } from './key';
+
 const recognition = new webkitSpeechRecognition() || new SpeechRecognition();
 recognition.interimResults = true;
 recognition.continuous = true;
 let index = 0;
 let start1 = true;
 let g = [];
+
 class Queue {
 
-  /** The constructor for the queue
-   * elements: list of the elements inside the queue
-   * frontIndex: the frontmost index inside the queue
-   * backIndex: the backmost index inside the queue
-   */
   constructor() {
     this.elements = [];
     this.openai = new OpenAI({ apiKey: OPENAI_API_KEY, dangerouslyAllowBrowser: true});
   }
 
-  /** Inserts a new element to the back of the queue
-   * Parameter: the element to be inserted
-   * Return: nothing
-   */
   enqueue(x) {
     this.elements.push(x);
   }
 
-  /** Removes the first element of the queue
-   * Parameters: none
-   * Return: the removed element
-   */
   dequeue() {
     const element = this.elements[0];
     delete this.elements[this.frontIndex];
     return element;
   }
-  
-  /** Gets the first element inside the queue
-   * Parameters: none
-   * Return: the first element inside the queue
-   */
+
   getFrontElement() {
     return this.elements[0];
   }
 
-  /** Gets the list of items in the queue
-   * Parameters: none
-   * Return: the list of items in the queue 
-   */
   getQueue() {
     return this.elements;
   }
 
-  /** Checks if the queue is full (has 5 elements)
-   * Parameters: none
-   * Return: True if queue has 5 elements
-   */
   checkFull(){
     if (this.elements.length >= 10){
       return true;
@@ -66,7 +43,7 @@ class Queue {
   async response() {
     const completion = await this.openai.chat.completions.create({
       messages: [
-        { role: "system", content: "summarize and provide one sentence of notes for each input from the transcript. Make sure they accurately reflect the topic of the notes, as students will be using these in order to study, but also make sure they are not too long as the point is to summarize it concicely for the students use. correct for any unintended mistakes. each input from the transcript is around 10 sentences long. If you are unable to access the transcript, do not return anything." },
+        { role: "system", content: "Summarize the content that is given to you. Make sure that your summary accurately reflects the content given to you in the input. Make sure that it is formatted in maximum 2-3 bullet points. Make sure that you fix any errors in the text which may be present. If you are unable to access input, do not say anything." },
         { role: "user", content:  this.elements.join("")}],
       model: "gpt-3.5-turbo-0125",
     });
@@ -75,6 +52,7 @@ class Queue {
     document.getElementById("notesTextDiv").scrollTo(0, document.getElementById("notesText").scrollHeight);
     this.elements = [];
   }
+
 }
 
 const queue = new Queue();
@@ -100,6 +78,7 @@ document.getElementById('voiceButton').addEventListener('click', start);
 document.getElementById('deleteButtonRaw').addEventListener('click', () => clearBox("rawText"));
 document.getElementById('deleteButtonNotes').addEventListener('click', () => clearBox("notesText"));
 document.getElementById('printButton').addEventListener('click', () => printNotes());
+
 function clearBox(boxtype) {
   if (boxtype === "rawText") {
     console.log("raw");
@@ -111,6 +90,7 @@ function clearBox(boxtype) {
     document.getElementById("notesText").textContent = '';
   }
 }
+
 function printNotes() {
   var winPrint = window.open('', '', 'left=0,top=0,width=800,height=900,toolbar=0,scrollbars=0,status=0');
   winPrint.document.write(document.getElementById("notesText").innerHTML);
@@ -120,10 +100,12 @@ function printNotes() {
   winPrint.close();
 
 }
+
 function putToText() {
   document.getElementById("rawText").innerHTML = g.join("\n");
   document.getElementById("rawTextDiv").scrollTo(0, document.getElementById("rawText").scrollHeight);
 }
+
 recognition.onresult = event => {
     const result = event.results[event.results.length - 1];
     if(result.isFinal) {
